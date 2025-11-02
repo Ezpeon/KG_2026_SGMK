@@ -19,6 +19,7 @@ A service that allows people or vacation agencies to plan for their hikes in Tre
     - are there nearby hotels/camping sites?
 - other __attractions__ in the same area (related or not to the hike):
     - ski slopes
+    - museums
 
 ## Formal Purpose
 
@@ -58,46 +59,55 @@ A service that allows people or vacation agencies to plan for their hikes in Tre
 - accomodation (type, stars_score, price)
 - mobility services
 - town_macro_area
-
-
-```mermaid
-graph TD;
-    hike_path-->|next to|landmark;
-    hike_path-->|has|lodge;
-    town_macro_area-->|has|accomodation;
-    mobility_service<-->|connects to|town_macro_area;
-    mobility_service<-->|connects to|hike_path;
-```
-
+- attraction
 
 ### ER model *** (!!! Prof said it is not exactly an ER model even thought it's called that in the slides)
 
-_mermaid also supports ER models but idk how to use it very well_
 ```mermaid
 erDiagram
-    CUSTOMER ||--o{ ORDER : places
-    ORDER ||--|{ LINE_ITEM : contains
-    PRODUCT ||--o{ LINE_ITEM : included_in
+    HIKE_PATH  }|--o{ LANDMARK : next_to
+    HIKE_PATH  }|--o{ LODGE : has
+    TOWN_MACRO_AREA  ||--o{ ACCOMODATION : has
+    MOBILITY_SERVICE  }o--o{ TOWN_MACRO_AREA : connects
+    TOWN_MACRO_AREA  ||--o{ HIKE_PATH : is_in
+    REST_OF_THE_WORLD  ||--o{ MOBILITY_SERVICE : connects
+    TOWN_MACRO_AREA  ||--o{ ATTRACTION : has
 
-    CUSTOMER {
+    HIKE_PATH {
         string name
-        string address
-        string email
+        int difficulty
+        coords start
+        coords end
     }
-    ORDER {
-        int orderNumber
-        date orderDate
-        string status
-    }
-    LINE_ITEM {
-        int quantity
-        float price
-    }
-    PRODUCT {
-        string sku
+    LANDMARK {
         string name
-        float unitPrice
+        enum type
+        coords coords
     }
+    LODGE {
+        string name
+        int price
+        coords coords
+    }
+    TOWN_MACRO_AREA{
+        string town_name
+        coords coords
+    }
+    ATTRACTION{
+        string name
+        enum attraction_type
+        coords coords
+    }
+    ACCOMODATION{
+        string name
+        enum accomodation_type
+        bool offers_food
+        int price_per_night
+        coords coords
+    }
+    MOBILITY_SERVICE{
+        string name
+        int price
+    }
+    REST_OF_THE_WORLD{}
 ```
-
-
