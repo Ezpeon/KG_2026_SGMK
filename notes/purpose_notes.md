@@ -61,7 +61,7 @@ A service that allows people or vacation agencies to plan for their hikes in Tre
 - town_macro_area
 - attraction
 
-### ER model *** (!!! Prof said it is not exactly an ER model even thought it's called that in the slides)
+### ER model *** (!!! Prof said it is not exactly an ER model even thought it's called that in the slides) -> cardinality of relationships should not matter
 
 ```mermaid
 erDiagram
