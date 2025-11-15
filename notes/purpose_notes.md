@@ -153,8 +153,3 @@ erDiagram
 ```
 
 
-
-
-# ***example similar to ours***
-
-https://didatticaonline.unitn.it/dol/pluginfile.php/1988594/mod_resource/content/1/2025-L12-2_Trentino_Tourist_Facilities.pdf
