@@ -12,7 +12,7 @@ A service that allows people or vacation agencies to plan for their hikes in Tre
 - in which __period__ of the year is this accessible
 - the kind of experience they want
     - looking for particular __landmarks__?
-    - presence of "__services__" (bivouacs/refuges/lodges/moutain huts)
+    - presence of "__hiking services__" (bivouacs/refuges/lodges/moutain huts)
 - the __access__ to the route:
     - is a car required to get there?
 - the __accomodation__ for the rest of the vacation:
@@ -20,6 +20,14 @@ A service that allows people or vacation agencies to plan for their hikes in Tre
 - other __attractions__ in the same area (related or not to the hike):
     - ski slopes
     - museums
+- generic __services__ in the same area:
+    - convenience store
+    - hospital
+    - post office
+    - pharmacy
+    - restaurant
+
+
 
 ## Formal Purpose
 
@@ -28,7 +36,10 @@ A service that allows people or vacation agencies to plan for their hikes in Tre
 - location: Trentino region
 - time: divided by season
 
-### Personas and scenarios
+### Domain of Interest (DoI)
+TODO
+
+### Scenarios
 
 - someone who wants to plan a week long vacation with their family
 - a travel agency employee preparing a vacation package to offer
@@ -37,6 +48,9 @@ A service that allows people or vacation agencies to plan for their hikes in Tre
 - a primary school teacher planning for a school trip
 - ...
 - TODO
+
+### Personas
+TODO
 
 ### Competency Questions
 
@@ -55,11 +69,24 @@ A service that allows people or vacation agencies to plan for their hikes in Tre
 
 - hike paths (difficulty, active_seasons, max-min group size)
 - landmarks (type, active_season, bool_requires_detour_from_path)
-- lodges (*services_provided, stars_score, price)
+- lodges (_hiking services_) (*services_provided, stars_score, price)
 - accomodation (type, stars_score, price)
 - mobility services
-- town_macro_area
+- town macro area
 - attraction
+- services
+
+*have to do scenarios and personas first*
+| Scenario | Personas | Competency questions | Entities | Properties | Focus |
+|----------|----------|----------------------|----------|------------|-------|
+| TODO     | TODO     | TODO                 |hike paths| see ER| TODO|
+| TODO     | TODO     | TODO                 |landmarks| see ER| TODO|
+| TODO     | TODO     | TODO                 |lodges| see ER| TODO|
+| TODO     | TODO     | TODO                 |accomodation| see ER| TODO|
+| TODO     | TODO     | TODO                 |mobility services| see ER| TODO|
+| TODO     | TODO     | TODO                 |town macro area| see ER| TODO|
+| TODO     | TODO     | TODO                 |attraction| see ER| TODO|
+| TODO     | TODO     | TODO                 |services| see ER| TODO|
 
 ### ER model *** (!!! Prof said it is not exactly an ER model even thought it's called that in the slides) -> cardinality of relationships should not matter
 
@@ -69,9 +96,10 @@ erDiagram
     HIKE_PATH  }|--o{ LODGE : has
     TOWN_MACRO_AREA  ||--o{ ACCOMODATION : has
     MOBILITY_SERVICE  }o--o{ TOWN_MACRO_AREA : connects
-    TOWN_MACRO_AREA  ||--o{ HIKE_PATH : is_in
+    MOBILITY_SERVICE  ||--o{ HIKE_PATH : connects
     REST_OF_THE_WORLD  ||--o{ MOBILITY_SERVICE : connects
     TOWN_MACRO_AREA  ||--o{ ATTRACTION : has
+    TOWN_MACRO_AREA  ||--o{ SERVICE : has
 
     HIKE_PATH {
         string name
@@ -109,5 +137,17 @@ erDiagram
         string name
         int price
     }
+    SERVICE{
+        string name
+        enum type
+        coords coords
+    }
     REST_OF_THE_WORLD{}
 ```
+
+
+
+
+# ***example similar to ours***
+
+https://didatticaonline.unitn.it/dol/pluginfile.php/1988594/mod_resource/content/1/2025-L12-2_Trentino_Tourist_Facilities.pdf
