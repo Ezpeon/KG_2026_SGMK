@@ -75,6 +75,7 @@ TODO
 - attraction
 - services
 - guides
+- events
 
 *have to do scenarios and personas first*
 | Scenario | Personas | Competency questions | Entities | Properties | Focus |
@@ -103,6 +104,7 @@ erDiagram
     TOWN_MACRO_AREA  ||--o{ ATTRACTION : has
     TOWN_MACRO_AREA  ||--o{ SERVICE : has
     HIKE_PATH  }o--o{ GUIDE : follows
+    TOWN_MACRO_AREA  ||--o{ EVENT : hosts
 
     HIKE_PATH {
         string name
@@ -148,6 +150,10 @@ erDiagram
     }
     GUIDE{
         string name
+    }
+    EVENT{
+        string name
+        date date
     }
     REST_OF_THE_WORLD{}
 ```
