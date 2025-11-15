@@ -7,7 +7,6 @@ A service that allows people or vacation agencies to plan for their hikes in Tre
     - are there children?
     - are there only able bodied but not expert adults?
     - are there only experts?
-    -
 - how big of a group should consider this hike
 - in which __period__ of the year is this accessible
 - the kind of experience they want
@@ -26,7 +25,7 @@ A service that allows people or vacation agencies to plan for their hikes in Tre
     - post office
     - pharmacy
     - restaurant
-
+- __hiking guides__ or agencies that offer guidance on specific hikes
 
 
 ## Formal Purpose
@@ -68,25 +67,27 @@ TODO
 ### Concepts and Terms
 
 - hike paths (difficulty, active_seasons, max-min group size)
-- landmarks (type, active_season, bool_requires_detour_from_path)
+- landmarks (type, active_season, bool_requires_detour_from_path) - how can we include things that are not really landmarks? e.g. I want to go on a hike to see deer / I want to go on a hike to get mushrooms
 - lodges (_hiking services_) (*services_provided, stars_score, price)
 - accomodation (type, stars_score, price)
 - mobility services
 - town macro area
 - attraction
 - services
+- guides
 
 *have to do scenarios and personas first*
 | Scenario | Personas | Competency questions | Entities | Properties | Focus |
 |----------|----------|----------------------|----------|------------|-------|
-| TODO     | TODO     | TODO                 |hike paths| see ER| TODO|
-| TODO     | TODO     | TODO                 |landmarks| see ER| TODO|
-| TODO     | TODO     | TODO                 |lodges| see ER| TODO|
-| TODO     | TODO     | TODO                 |accomodation| see ER| TODO|
-| TODO     | TODO     | TODO                 |mobility services| see ER| TODO|
-| TODO     | TODO     | TODO                 |town macro area| see ER| TODO|
-| TODO     | TODO     | TODO                 |attraction| see ER| TODO|
-| TODO     | TODO     | TODO                 |services| see ER| TODO|
+| TODO     | TODO     | TODO                 |hike paths| see ER| core|
+| TODO     | TODO     | TODO                 |landmarks| see ER| common|
+| TODO     | TODO     | TODO                 |lodges| see ER| contextual|
+| TODO     | TODO     | TODO                 |accomodation| see ER| common|
+| TODO     | TODO     | TODO                 |mobility services| see ER| common|
+| TODO     | TODO     | TODO                 |town macro area| see ER| core|
+| TODO     | TODO     | TODO                 |attraction| see ER| common|
+| TODO     | TODO     | TODO                 |services| see ER| common|
+| TODO     | TODO     | TODO                 |guides| see ER| contextual|
 
 ### ER model *** (!!! Prof said it is not exactly an ER model even thought it's called that in the slides) -> cardinality of relationships should not matter
 
@@ -95,14 +96,17 @@ erDiagram
     HIKE_PATH  }|--o{ LANDMARK : next_to
     HIKE_PATH  }|--o{ LODGE : has
     TOWN_MACRO_AREA  ||--o{ ACCOMODATION : has
+    TOWN_MACRO_AREA  }o--o{ HIKE_PATH : walkable_connection
     MOBILITY_SERVICE  }o--o{ TOWN_MACRO_AREA : connects
     MOBILITY_SERVICE  ||--o{ HIKE_PATH : connects
     REST_OF_THE_WORLD  ||--o{ MOBILITY_SERVICE : connects
     TOWN_MACRO_AREA  ||--o{ ATTRACTION : has
     TOWN_MACRO_AREA  ||--o{ SERVICE : has
+    HIKE_PATH  }o--o{ GUIDE : follows
 
     HIKE_PATH {
         string name
+        list months_open
         int difficulty
         coords start
         coords end
@@ -141,6 +145,9 @@ erDiagram
         string name
         enum type
         coords coords
+    }
+    GUIDE{
+        string name
     }
     REST_OF_THE_WORLD{}
 ```
