@@ -10,41 +10,62 @@ The domain of interest is the Trentino province in the year 2025 (but with the p
 
 ### Scenarios Definition
 
-1. _made-up-name_ and her family, her husband and 2 children (8, 12) are planning a summer trip to Trentino. They are looking for a week long stay at a hotel next to simple and short hikes that they can go on together and hope to see both natural and cultural local landmarks. They can reach the place with their car but would prefer having many services in walking distance from their accomodation place.
+1. _made-up-name_ and her family, her husband and 2 children (8, 12) are planning a summer trip to Trentino. They are looking for a week long stay at a hotel next to simple and short hikes that they can go on together and hope to see some local landmarks. They would like to visit during some local event in order to enjoy the local culture more. They can reach the place with their car but would prefer having many services in walking distance from their accomodation place.
 2. _made-up-name_ works at a travel agency. He has to set up four different vacation plans to offer in the Trentino area. Two of them have to be summer oriented, and the other two winter oriented. For each of those groups, one has to be nature oriented, one has to be more sport and other outdoor activities oriented. Both can of course contain minor activities that deviate from the main focus. As the travel agency is looking for specific deals with local services, accomodation and attractions, they are trying to keep both of the summer plans and both of the winter plans to the same general areas.
 3. _made-up-name_ is looking for a hike he can go on a weekend to blow off steam from his studies. He lives in Trento and has access to local public transport, but not a car. He wants to start in the morning, reach a mountain refuge-restaurant for his lunch, then come back in the afternoon.
 4. _made-up-name_ wants to go on a multiple day long hike with her friends this winter. They are expert excursionists and want to spend the night at a bivouac.
-5. _made-up-name_ is a primary school teacher who is planning a trip for a class of hers. They want to go on a simple hike to see some of the local historical remains from the Great War like trenches and forts present on the territory. They need a local guide that can explain the significance of the remains they are going to find.
+5. _made-up-name_ is a primary school teacher who is planning a trip for a class of hers. They want to go on a simple hike to see some of the local historical remains in the region (for example trenches or forts from the Great War) present on the territory. They need a local guide that can explain the significance of the remains they are going to find.
 6. _made-up-name_ is volunteering at a local summer colony, and is looking for a simple trip they can bring the children on for one of the days. They are mainly looking for something simple that does not require additional guides and is reachable with public transport.
 
 ### Personas
 
-1. _made-up-name_ is a 38 year old marketing manager. She likes a balance between outdoor activities, cultural experiences and downtime at comfortable accomodations.
+1. _made-up-name_ is 38 years old. She likes a balance between outdoor activities, cultural experiences and downtime at comfortable accomodations.
 2. _made-up-name_ is a 46 year old employee that works at a travel agency.
 3. _made-up-name_ is a 22 year old student. He likes nature-oriented immersive adventures.
-4. _made-up-name_ is 29 years old. Although not her job, she is an exper hiker and climber, and likes going on challenging trips in nature with her group of friends.
+4. _made-up-name_ is 29 years old. Although not her job, she is an expert hiker and climber, and likes going on challenging trips in nature with her group of friends.
 5. _made-up-name_ is a 52 year old primary school teacher.
 6. _made-up-name_ is 30 years old and he is volunteering at a summer colony for kids.
 
 ### Competency questions
 | Person | No. | Question |
 |-|-|-|
-|name|1.1| Which local area offers both outdoors sport activities and trips to see some natural and cultural landmarks? |
-|name|1.2| Which of these has some hotels for accomodation and services like restaurants? |
+|name|1.1| Which area offers that has hikes with landmarks to see also hosts events during summer? |
+|name|1.2| Which hotels are in that area? |
+|name|1.3| Are the events free or do we need to buy tickets? |
+|name|1.4| Are there restaurants there? |
+|name|1.5| Which hikes around that area are kid-friendly? |
+|name|1.6| What can I see on those hikes? |
+|name|2.1| Which area has both summer oriented outdoors attractions and is close to hikes that are open in summer? |
+|name|2.2| Which area has both winter hikes and ski slopes nearby? |
+|name|2.3| Which hotels are available in the area? |
+|name|2.4| Which guides are available for the trails? |
+|name|2.5| Are there buses or other mobility services that connect those places? |
+|name|2.6| Which other services are available in that area? |
+|name|3.1| What is a hike with a mountain lodge restaurant checkpoint roughly in the middle? |
+|name|3.2| Which options are there to reach the start and end of that trail with public transport? |
+|name|4.1| Which more challenging and long hikes are available in winter? |
+|name|4.2| Are there bivouacs or other mountain huts on the path of the trail? |
+|name|4.3| What equipment is needed for those trails? |
+|name|5.1| Which simple hikes visit historical landmarks? |
+|name|5.2| Which guides that can also tell us about the local history are available for those hikes? |
+|name|6.1| Which areas have simple hikes with natural landmarks? |
+|name|6.2| Which other attractions are in those areas? |
+|name|6.3| Which public transport solutions are available to reach those places? |
 
 ### Concepts
 
 | Scenario | Personas | Competency questions | Entities | Properties | Focus |
 |----------|----------|----------------------|----------|------------|-------|
-| TODO     | TODO     | TODO                 |hike paths| see ER| core|
-| TODO     | TODO     | TODO                 |landmarks| see ER| common|
-| TODO     | TODO     | TODO                 |lodges| see ER| contextual|
-| TODO     | TODO     | TODO                 |accomodation| see ER| common|
-| TODO     | TODO     | TODO                 |mobility services| see ER| common|
-| TODO     | TODO     | TODO                 |town macro area| see ER| core|
-| TODO     | TODO     | TODO                 |attraction| see ER| common|
-| TODO     | TODO     | TODO                 |services| see ER| common|
-| TODO     | TODO     | TODO                 |guides| see ER| contextual|
+| 1, 2, 3, 4, 5, 6 | names | 1.1, 1.5, 1.6, 2.1, 2.2, 2.4, 3.1, 3.2, 4.1, 4.2, 4.3, 5.1, 5.2, 6.1, 6.3 |hike paths| see ER| core |
+| 1, 5, 6 | names | 1.1, 1.6, 5.1, 5.2, 6.1 |landmarks| see ER| common |
+| 3, 4 | names | 3.1, 4.2 |lodges| see ER| contextual |
+| 1, 2 | names | 1.2, 2.3 |accomodation| see ER| common |
+| 2, 3, 6 | names | 2.5, 3.2, 6.3 |mobility services| see ER| common |
+| 1, 2, 6 | names | 1.1, 1.2, 1.4, 1.5, 2.1, 2.2, 2.3, 2.5, 2.6, 6.1, 6.2, 6.3 |town macro area| see ER| core |
+| 2, 6 | names | 2.1, 2.2, 6.2 |attraction| see ER| common |
+| 1, 2 | names | 1.4, 2.6 |services| see ER| common |
+| 2, 5 | names | 2.4, 5.2 |guides| see ER| contextual |
+| 1 | names | 1.1, 1.3 |events| see ER| contextual |
 
 ### ER model
 
@@ -68,34 +89,38 @@ erDiagram
         string name
         list months_open
         int difficulty
+        pair[int] min_max_people
+        int average_hours_length
+        list required_equipment
         coords start
         coords end
     }
     LANDMARK {
         string name
         enum type
-        coords coords
+        coords location
     }
     LODGE {
         string name
+        enum type
         int price
-        coords coords
+        coords location
     }
     TOWN_MACRO_AREA{
         string town_name
-        coords coords
+        coords location(town_centre)
     }
     ATTRACTION{
         string name
         enum attraction_type
-        coords coords
+        int price
+        coords location
     }
     ACCOMODATION{
         string name
         enum accomodation_type
-        bool offers_food
         int price_per_night
-        coords coords
+        coords location
     }
     MOBILITY_SERVICE{
         string name
@@ -104,51 +129,22 @@ erDiagram
     SERVICE{
         string name
         enum type
-        coords coords
+        coords location
     }
     GUIDE{
         string name
+        int price_per_trip
     }
     EVENT{
         string name
         date date
+        coords location
     }
     REST_OF_THE_WORLD{}
 ```
 
 # NOTES
 ---------------------------------------------------------------------------------
-
-### Competency Questions
-
-- What are simple hikes with great wintery natural views suitable for a family vacation?
-    - "family vacation" -> can we assume long so requires accomodation?
-    - no specification of vehicles means they have access to car?
-- Give hikes next to places with ski slopes
-- What hikes can I go to if I am spending a week in Folgaria?
-- Where can I go on a hike in a summer break weekend with my college/work friends?
-- Long hikes with overnight stay in refuge with running water
-- ...
-- TODO
-
-
-### Concepts and Terms
-
-- hike paths (difficulty, active_seasons, max-min group size)
-- landmarks (type, active_season, bool_requires_detour_from_path) - how can we include things that are not really landmarks? e.g. I want to go on a hike to see deer / I want to go on a hike to get mushrooms
-- lodges (_hiking services_) (*services_provided, stars_score, price)
-- accomodation (type, stars_score, price)
-- mobility services
-- town macro area
-- attraction
-- services
-- guides
-- events
-
-
-
-
-
 
 A service that allows people or vacation agencies to plan for their hikes in Trentino's territory, based on:
 - their __expertise__ in hiking
