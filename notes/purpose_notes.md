@@ -56,118 +56,28 @@ The domain of interest is the Trentino province in the year 2025 (but with the p
 
 | Scenario | Personas | Competency questions | Entities | Properties | Focus |
 |----------|----------|----------------------|----------|------------|-------|
-| 1, 2, 3, 4, 5, 6 | names | 1.1, 1.5, 1.6, 2.1, 2.2, 2.4, 3.1, 3.2, 4.1, 4.2, 4.3, 5.1, 5.2, 6.1, 6.3 |hike paths| see ER| core |
-| 1, 5, 6 | names | 1.1, 1.6, 5.1, 5.2, 6.1 |landmarks| see ER| common |
-| 3, 4 | names | 3.1, 4.2 |lodges| see ER| contextual |
-| 1, 2 | names | 1.2, 2.3 |accomodation| see ER| common |
-| 2, 3, 6 | names | 2.5, 3.2, 6.3 |mobility services| see ER| common |
-| 1, 2, 6 | names | 1.1, 1.2, 1.4, 1.5, 2.1, 2.2, 2.3, 2.5, 2.6, 6.1, 6.2, 6.3 |town macro area| see ER| core |
-| 2, 6 | names | 2.1, 2.2, 6.2 |attraction| see ER| common |
-| 1, 2 | names | 1.4, 2.6 |services| see ER| common |
-| 2, 5 | names | 2.4, 5.2 |guides| see ER| contextual |
-| 1 | names | 1.1, 1.3 |events| see ER| contextual |
+| 1, 2, 3, 4, 5, 6 | names | 1.1, 1.5, 1.6, 2.1, 2.2, 2.4, 3.1, 3.2, 4.1, 4.2, 4.3, 5.1, 5.2, 6.1, 6.3 |hike paths| name, months_open, difficulty, min_max_people, length, start_coords, end_coords| core |
+| 1, 5, 6 | names | 1.1, 1.6, 5.1, 5.2, 6.1 |landmarks| name, type, coords| common |
+| 3, 4 | names | 3.1, 4.2 |mountain service| name, type, price_range, coords| contextual |
+| 1, 2 | names | 1.2, 1.4, 2.3, 2.6 |service| name, type, price_range, coords| common |
+| 2, 3, 6 | names | 2.5, 3.2, 6.3 |mobility| name, price| common |
+| 1, 2, 6 | names | 1.1, 1.2, 1.4, 1.5, 2.1, 2.2, 2.3, 2.5, 2.6, 6.1, 6.2, 6.3 |town macro area| name, coords| core |
+| 2, 6 | names | 2.1, 2.2, 6.2 |attraction| naem, type, price, coords| common |
+| 2, 5 | names | 2.4, 5.2 |guide_agency| name, price, offers| contextual |
+| 1 | names | 1.1, 1.3 |events| name, date(s), coords| contextual |
 
 ### ER model
 
-_TODO fix model add correct attributes and check mobility-town-hike triangle_
-
 ```mermaid
-erDiagram
-    HIKE_PATH  }|--o{ LANDMARK : next_to
-    HIKE_PATH  }|--o{ LODGE : has
-    TOWN_MACRO_AREA  ||--o{ ACCOMODATION : has
-    TOWN_MACRO_AREA  }o--o{ HIKE_PATH : walkable_connection
-    MOBILITY_SERVICE  }o--o{ TOWN_MACRO_AREA : connects
-    MOBILITY_SERVICE  ||--o{ HIKE_PATH : connects
-    REST_OF_THE_WORLD  ||--o{ MOBILITY_SERVICE : connects
-    TOWN_MACRO_AREA  ||--o{ ATTRACTION : has
-    TOWN_MACRO_AREA  ||--o{ SERVICE : has
-    HIKE_PATH  }o--o{ GUIDE : follows
-    TOWN_MACRO_AREA  ||--o{ EVENT : hosts
-
-    HIKE_PATH {
-        string name
-        list months_open
-        int difficulty
-        pair[int] min_max_people
-        int average_hours_length
-        list required_equipment
-        coords start
-        coords end
-    }
-    LANDMARK {
-        string name
-        enum type
-        coords location
-    }
-    LODGE {
-        string name
-        enum type
-        int price
-        coords location
-    }
-    TOWN_MACRO_AREA{
-        string town_name
-        coords location(town_centre)
-    }
-    ATTRACTION{
-        string name
-        enum attraction_type
-        int price
-        coords location
-    }
-    ACCOMODATION{
-        string name
-        enum accomodation_type
-        int price_per_night
-        coords location
-    }
-    MOBILITY_SERVICE{
-        string name
-        int price
-    }
-    SERVICE{
-        string name
-        enum type
-        coords location
-    }
-    GUIDE{
-        string name
-        int price_per_trip
-    }
-    EVENT{
-        string name
-        date date
-        coords location
-    }
-    REST_OF_THE_WORLD{}
+graph LR
+    HIKE_PATH -- has --> LANDMARK
+    HIKE_PATH -- has --> MOUNTAIN_SERVICE
+    TOWN_MACRO_AREA  -- located_near --> HIKE_PATH
+    MOBILITY -- used_to_reach --> TOWN_MACRO_AREA
+    MOBILITY -- used_to_reach --> HIKE_PATH
+    ATTRACTION -- is_in --> TOWN_MACRO_AREA
+    SERVICE -- is_in --> TOWN_MACRO_AREA
+    GUIDE_AGENCY -- follows --> HIKE_PATH
+    TOWN_MACRO_AREA -- hosts --> EVENT
+    MOUNTAIN_SERVICE -.-> SERVICE
 ```
-
-# NOTES
----------------------------------------------------------------------------------
-
-A service that allows people or vacation agencies to plan for their hikes in Trentino's territory, based on:
-- their __expertise__ in hiking
-    - are there children?
-    - are there only able bodied but not expert adults?
-    - are there only experts?
-- how big of a group should consider this hike
-- in which __period__ of the year is this accessible
-- the kind of experience they want
-    - looking for particular __landmarks__?
-    - presence of "__hiking services__" (bivouacs/refuges/lodges/moutain huts)
-- the __access__ to the route:
-    - is a car required to get there?
-- the __accomodation__ for the rest of the vacation:
-    - are there nearby hotels/camping sites?
-- other __attractions__ in the same area (related or not to the hike):
-    - ski slopes
-    - museums
-- generic __services__ in the same area:
-    - convenience store
-    - hospital
-    - post office
-    - pharmacy
-    - restaurant
-- __hiking guides__ or agencies that offer guidance on specific hikes
-
